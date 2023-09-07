@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-	<type name="Magento\Framework\App\StaticResource">
-		<plugin name="fishpig-svg" type="FishPig\SvgLibrary\Plugin\Magento\Framework\App\StaticResourcePlugin"/>
-	</type>
+    <type name="Magento\Framework\App\StaticResource">
+        <plugin name="fishpig-svg" type="FishPig\SvgLibrary\Plugin\Magento\Framework\App\StaticResourcePlugin"/>
+    </type>
+    <type name="FishPig\SvgLibrary\App\FileCollector">
+        <arguments>
+            <argument name="fileCollectors" xsi:type="array">
+                <item name="theme" xsi:type="object">Magento\Framework\View\File\Collector\Theme</item>
+                <item name="theme-modular" xsi:type="object">Magento\Framework\View\File\Collector\ThemeModular</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

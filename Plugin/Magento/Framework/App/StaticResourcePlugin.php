@@ -14,8 +14,23 @@ class StaticResourcePlugin
     /**
      * @var Request
      */
-    private $request;
-    
+    private $request = null;
+
+    /**
+     * @var
+     */
+    private $svgSpriteGeneratorFactory = null;
+
+    /**
+     * @var
+     */
+    private $appState = null;
+
+    /**
+     * @var
+     */
+    private $viewDesign = null;
+
     /**
      * @param Webp $webp
      */
@@ -30,7 +45,7 @@ class StaticResourcePlugin
         $this->appState = $appState;
         $this->viewDesign = $viewDesign;
     }
-    
+
     /**
      * @param StaticResource $subject
      */
@@ -42,12 +57,12 @@ class StaticResourcePlugin
 
         $this->appState->setAreaCode($params['designParams']['area']);
         $this->viewDesign->setDesignTheme($params['designParams']['theme'], $params['designParams']['area']);
-        
+
         header('Content-Type: image/svg+xml');
         echo $this->svgSpriteGeneratorFactory->create()->getSpriteData($params['group']);
         exit;
     }
-    
+
     /**
      * @return bool
      */
@@ -56,7 +71,7 @@ class StaticResourcePlugin
         if (trim((string)$pathInfo) === '') {
             return null;
         }
-        
+
         // Strip version string
         $pathInfo = preg_replace('/\/version[0-9]{1,}\//', '/', $pathInfo);
 

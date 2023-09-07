@@ -24,7 +24,7 @@ class ElementFactory extends \Magento\Framework\View\Element\AbstractBlock
         $this->minifier = $minifier;
         parent::__construct($context, $data);
     }
-    
+
     /**
      *
      */
@@ -34,7 +34,7 @@ class ElementFactory extends \Magento\Framework\View\Element\AbstractBlock
             $options = $useHref;
             $useHref = $id;
         }
-        
+
         if ($useHref === null) {
             $useHref = $id;
         }
@@ -43,7 +43,7 @@ class ElementFactory extends \Magento\Framework\View\Element\AbstractBlock
             if (strpos($useHref, '.svg#') === false && $this->isExternal()) {
                 $useHref = 'sprite/default.svg#' . $useHref;
             }
-            
+
             $useHref = $this->getViewFileUrl($useHref);
         } else {
             $useHref = '#'. $useHref;
@@ -51,7 +51,7 @@ class ElementFactory extends \Magento\Framework\View\Element\AbstractBlock
 
         // Build <svg> tag
         $svgTag = '<svg';
-        
+
         if ($options) {
             foreach ($options as $key => $value) {
                 $svgTag .= ' ' . $key . '="' . $value . '"';
@@ -62,7 +62,7 @@ class ElementFactory extends \Magento\Framework\View\Element\AbstractBlock
 
         return $svgTag;
     }
-    
+
     /**
      *
      */
@@ -72,10 +72,10 @@ class ElementFactory extends \Magento\Framework\View\Element\AbstractBlock
             if (!is_file($asset->getSourceFile())) {
                 return null;
             }
-            
+
             return $this->minifier->minify(file_get_contents($asset->getSourceFile()));
         }
-        
+
         return null;
     }
 }

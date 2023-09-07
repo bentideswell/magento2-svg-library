@@ -11,12 +11,17 @@ class InjectSvgFactoryIntoBlocksObserver implements \Magento\Framework\Event\Obs
     /**
      *
      */
+    private $svgElementFactory = null;
+
+    /**
+     *
+     */
     public function __construct(
         \FishPig\SvgLibrary\Block\ElementFactory $svgElementFactory
     ) {
         $this->svgElementFactory = $svgElementFactory;
     }
-    
+
     /**
      * @param  \Magento\Framework\Event\Observer $observer
      */
